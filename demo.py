@@ -20,7 +20,7 @@ import imutils.video
 from videocaptureasync import VideoCaptureAsync
 
 warnings.filterwarnings('ignore')
-
+#test
 def main(yolo):
 
     # Definition of the parameters
