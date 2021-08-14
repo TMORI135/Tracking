@@ -97,8 +97,8 @@ def main(yolo):
                     continue
                 bbox = track.to_tlbr()
                 cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (255, 255, 255), 2)
-                cv2.putText(frame, "ID: " + str(track.track_id), (int(bbox[0]), int(bbox[1])), 0,
-                            1.5e-3 * frame.shape[0], (0, 255, 0), 1)
+                #cv2.putText(frame, "ID: " + str(track.track_id), (int(bbox[0]), int(bbox[1])), 0,
+                #            1.5e-3 * frame.shape[0], (0, 255, 0), 1)
 
         for det in detections:
             bbox = det.to_tlbr()
@@ -106,7 +106,9 @@ def main(yolo):
             cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (255, 0, 0), 2)
             if len(classes) > 0:
                 cls = det.cls
-                cv2.putText(frame, str(cls) + " " + score, (int(bbox[0]), int(bbox[3])), 0,
+                #cv2.putText(frame, str(cls) + " " + score, (int(bbox[0]), int(bbox[3])), 0,
+                #            1.5e-3 * frame.shape[0], (0, 255, 0), 1)
+                cv2.putText(frame, str(cls), (int(bbox[0]), int(bbox[3])), 0,
                             1.5e-3 * frame.shape[0], (0, 255, 0), 1)
 
         cv2.imshow('', frame)
