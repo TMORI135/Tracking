@@ -39,7 +39,7 @@ def main(yolo):
     writeVideo_flag = True
     asyncVideo_flag = False
 
-    file_path = 'video.webm'
+    file_path = 'Driving_cyc.mov'#'video.webm'
     if asyncVideo_flag :
         video_capture = VideoCaptureAsync(file_path)
     else:
@@ -71,6 +71,7 @@ def main(yolo):
 
         image = Image.fromarray(frame[...,::-1])  # bgr to rgb
         boxes, confidence, classes = yolo.detect_image(image)
+        print(classes)
 
         if tracking:
             features = encoder(frame, boxes)
@@ -97,8 +98,8 @@ def main(yolo):
                     continue
                 bbox = track.to_tlbr()
                 cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (255, 255, 255), 2)
-                #cv2.putText(frame, "ID: " + str(track.track_id), (int(bbox[0]), int(bbox[1])), 0,
-                #            1.5e-3 * frame.shape[0], (0, 255, 0), 1)
+                cv2.putText(frame, "ID: " + str(track.track_id), (int(bbox[0]), int(bbox[1])), 0,
+                            1.5e-3 * frame.shape[0], (0, 255, 0), 1)
 
         for det in detections:
             bbox = det.to_tlbr()
